@@ -5,6 +5,7 @@ namespace IteratorTasks
 {
     public partial class Task
     {
+        public static Task Delay(TimeSpan span) { return Delay((int)span.TotalMilliseconds, CancellationToken.None, null); }
         public static Task Delay(int delayMilliseconds) { return Delay(delayMilliseconds, CancellationToken.None, null); }
         public static Task Delay(int delayMilliseconds, TaskScheduler scheduler)
         {

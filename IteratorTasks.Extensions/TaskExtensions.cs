@@ -265,6 +265,8 @@ namespace IteratorTasks
             return cts;
         }
 
+        public static CancellationToken Merge(this CancellationToken t1, CancellationToken t2) { return new []{t1, t2}.ToCancellationTokenSourceOneWay().Token; }
+
         /// <summary>
         /// CancellationToken からキャンセルされたときに完了するタスクを作成する。
         /// </summary>
