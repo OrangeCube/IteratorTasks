@@ -1,6 +1,6 @@
 --------
 
-Copyright (C) 2012 Aiming Inc.
+Copyright (C) 2012 Aiming Inc., (C) 2014 Orange Cube Inc.
 
 --------
 

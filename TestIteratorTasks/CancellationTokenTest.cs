@@ -1,146 +1,118 @@
-using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+﻿using IteratorTasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Aiming.IteratorTasks;
+using System;
+using System.Linq;
 
 namespace TestIteratorTasks
 {
-	[TestClass]
-	public class CancellationTokenTest
-	{
-		[TestMethod]
-		public void キャンセルトークンを渡しても_Cancelを呼ばなければ正常終了()
-		{
-			var x = 10;
-			var runner = new SampleTaskRunner.TaskRunner();
+    [TestClass]
+    public class CancellationTokenTest
+    {
+        [TestMethod]
+        public void キャンセルトークンを渡しても_Cancelを呼ばなければ正常終了()
+        {
+            var x = 10;
+            var scheduler = Task.DefaultScheduler;
 
-			var t = new Task<double>(c => Coroutines.F1Cancelable(x, 20, c, CancellationToken.None));
-	
-			t.Start(runner);
-			while (!t.IsCompleted)
-				runner.Update();
+            var t = Task.Run<double>(c => Coroutines.F1Cancelable(x, 20, c, CancellationToken.None));
 
-			Assert.AreEqual(Coroutines.F1(x), t.Result);
-		}
+            while (!t.IsCompleted)
+                scheduler.Update();
 
-		[TestMethod]
-		public void キャンセルしたときにOperationCanceld例外発生()
-		{
-			var x = 10;
-			var runner = new SampleTaskRunner.TaskRunner();
+            Assert.AreEqual(Coroutines.F1(x), t.Result);
+        }
 
-			var cts = new CancellationTokenSource();
-			var t = new Task<double>(c => Coroutines.F1Cancelable(x, 20, c, cts.Token));
+        [TestMethod]
+        public void キャンセルしたときにOperationCanceld例外発生()
+        {
+            var x = 10;
+            var scheduler = Task.DefaultScheduler;
 
-			t.Start(runner);
-			runner.Update(5);
-			cts.Cancel();
+            var cts = new CancellationTokenSource();
+            var t = Task.Run<double>(c => Coroutines.F1Cancelable(x, 20, c, cts.Token));
 
-			// 次の1回の実行でタスクが終わるはず
-			runner.Update();
+            scheduler.Update(5);
+            cts.Cancel();
 
-			// この場合は IsCanceled にならない
-			Assert.IsTrue(t.IsFaulted);
-			Assert.AreEqual(typeof(TaskCanceledException), t.Error.Exceptions.Single().GetType());
-		}
+            // 次の1回の実行でタスクが終わるはず
+            scheduler.Update();
 
-		[TestMethod]
-		public void TaskのForceCancelで強制的にタスクを止めたときはOnCompleteも呼ばれない()
-		{
-			var x = 10;
-			var runner = new SampleTaskRunner.TaskRunner();
+            // この場合は IsCanceled にならない
+            Assert.IsTrue(t.IsFaulted);
+            Assert.AreEqual(typeof(TaskCanceledException), t.Exception.Exceptions.Single().GetType());
+        }
 
-			var cts = new CancellationTokenSource();
-			var t = new Task<double>(c => Coroutines.F1Cancelable(x, 20, c, cts.Token));
+        [TestMethod]
+        public void CancellationTokenを使うバージョンのRunでタスク開始するとTask_Cancel可能()
+        {
+            var x = 10;
+            var scheduler = Task.DefaultScheduler;
 
-			t.OnComplete(_ =>
-			{
-				Assert.Fail();
-			});
+            var cts = new CancellationTokenSource();
+            var t = Task.Run<double>((c, ct) => Coroutines.F1Cancelable(x, 20, c, ct), cts);
 
-			t.Start(runner);
-			runner.Update(5);
-			t.ForceCancel();
+            scheduler.Update(5);
+            t.Cancel();
 
-			runner.Update();
+            // 次の1回の実行でタスクが終わるはず
+            scheduler.Update();
 
-			// この場合は IsCanceled に
-			Assert.IsTrue(t.IsCanceled);
-		}
+            // この場合は IsCanceled にならない
+            Assert.IsTrue(t.IsFaulted);
+            Assert.AreEqual(typeof(TaskCanceledException), t.Exception.Exceptions.Single().GetType());
+        }
 
-		[TestMethod]
-		public void TaskにCancellationTokenSourceを渡しておいて_TaskのCancelメソッド経由でキャンセルできる()
-		{
-			var x = 10;
-			var runner = new SampleTaskRunner.TaskRunner();
+        [TestMethod]
+        public void Cancel時にRegisterで登録したデリゲートが呼ばれる()
+        {
+            var scheduler = Task.DefaultScheduler;
 
-			var cts = new CancellationTokenSource();
-			var t = new Task<double>(c => Coroutines.F1Cancelable(x, 20, c, cts.Token));
+            {
+                // キャンセルしない場合
+                var cts = new CancellationTokenSource();
+                var t = Task.Run<string>(c => Cancelで戻り値が切り替わるコルーチン(10, c, cts.Token));
 
-			t.Cancellation = cts;
+                scheduler.Update(20);
 
-			t.Start(runner);
-			runner.Update(5);
-			t.Cancel(); // Task.Cancel の中で1度 MoveNext して、即座にキャンセル処理が動くようにする
+                Assert.IsTrue(t.IsCompleted);
+                Assert.AreEqual(CompletedMessage, t.Result);
+            }
 
-			// 挙動自体は cts.Cancel(); と同じ
-			Assert.IsTrue(t.IsFaulted);
-			Assert.AreEqual(typeof(TaskCanceledException), t.Error.Exceptions.Single().GetType());
-		}
+            {
+                // キャンセルする場合
+                var cts = new CancellationTokenSource();
+                var t = Task.Run<string>(c => Cancelで戻り値が切り替わるコルーチン(10, c, cts.Token));
 
-		[TestMethod]
-		public void Cancel時にRegisterで登録したデリゲートが呼ばれる()
-		{
-			var runner = new SampleTaskRunner.TaskRunner();
+                scheduler.Update(5);
+                cts.Cancel();
+                scheduler.Update(5);
 
-			{
-				// キャンセルしない場合
-				var cts = new CancellationTokenSource();
-				var t = new Task<string>(c => Cancelで戻り値が切り替わるコルーチン(10, c, cts.Token));
-				t.Start(runner);
-				runner.Update(20);
+                Assert.IsTrue(t.IsCompleted);
+                Assert.AreEqual(CanceledMessage, t.Result);
+            }
+        }
 
-				Assert.IsTrue(t.IsCompleted);
-				Assert.AreEqual(CompletedMessage, t.Result);
-			}
+        const string CompletedMessage = "最後まで実行された時の戻り値";
+        const string CanceledMessage = "キャンセルされた時の戻り値";
 
-			{
-				// キャンセルする場合
-				var cts = new CancellationTokenSource();
-				var t = new Task<string>(c => Cancelで戻り値が切り替わるコルーチン(10, c, cts.Token));
-				t.Start(runner);
-				runner.Update(5);
-				cts.Cancel();
-				runner.Update(5);
+        static System.Collections.IEnumerator Cancelで戻り値が切り替わるコルーチン(int n, Action<string> completed, CancellationToken ct)
+        {
+            var message = CompletedMessage;
 
-				Assert.IsTrue(t.IsCompleted);
-				Assert.AreEqual(CanceledMessage, t.Result);
-			}
-		}
+            ct.Register(() =>
+            {
+                message = CanceledMessage;
+            });
 
-		const string CompletedMessage = "最後まで実行された時の戻り値";
-		const string CanceledMessage = "キャンセルされた時の戻り値";
+            for (int i = 0; i < n; i++)
+            {
+                if (ct.IsCancellationRequested)
+                    break;
 
-		static System.Collections.IEnumerator Cancelで戻り値が切り替わるコルーチン(int n, Action<string> completed, CancellationToken ct)
-		{
-			var message = CompletedMessage;
+                yield return null;
+            }
 
-			ct.Register(() =>
-			{
-				message = CanceledMessage;
-			});
-
-			for (int i = 0; i < n; i++)
-			{
-				if (ct.IsCancellationRequested)
-					break;
-
-				yield return null;
-			}
-
-			completed(message);
-		}
-	}
+            completed(message);
+        }
+    }
 }

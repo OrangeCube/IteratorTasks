@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A3FBC7EE-46C0-4A22-BD44-FDFCE425672D}</ProjectGuid>
+    <ProjectGuid>{DD33110F-2F7F-432E-A48F-E22FE07B9E27}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestIteratorTasks</RootNamespace>
     <AssemblyName>TestIteratorTasks</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -17,10 +17,6 @@
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
     <TargetFrameworkProfile />
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,20 +53,32 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CancellationTokenTest.cs" />
     <Compile Include="Coroutines.cs" />
-    <Compile Include="ProgressTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskExtensions.cs" />
+    <Compile Include="TaskWhenAnyTest.cs" />
+    <Compile Include="TaskSchedulerHelper.cs" />
+    <Compile Include="AwaitTest.cs" />
     <Compile Include="TaskTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskCompletionSourceTest.cs" />
+    <Compile Include="CancellationTokenTest.cs" />
+    <Compile Include="ProgressTest.cs" />
+    <Compile Include="AwaiterTest.cs" />
+    <Compile Include="TaskSchedulerTest.cs" />
+    <Compile Include="TaskUtilityTest.cs" />
+    <Compile Include="TaskTestSchedulingTiming.cs" />
+    <Compile Include="TaskWhenTest.cs" />
+    <Compile Include="TaskYieldAwaitTest.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IteratorTasks\IteratorTasks.csproj">
-      <Project>{3ab99f84-7e6f-4b01-9f57-ae5722c56893}</Project>
-      <Name>IteratorTasks</Name>
+    <ProjectReference Include="..\IteratorTasks.Extensions\IteratorTasks.Extensions.csproj">
+      <Project>{9aa09159-8567-4f4b-9871-24b43decf6af}</Project>
+      <Name>IteratorTasks.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SampleTaskRunner\SampleTaskRunner.csproj">
-      <Project>{5bf3a7f6-634b-4b1e-b3b2-134ecf8b1b26}</Project>
-      <Name>SampleTaskRunner</Name>
+    <ProjectReference Include="..\IteratorTasks\IteratorTasks.csproj">
+      <Project>{6c013095-537e-428a-9632-f5b18ee0edca}</Project>
+      <Name>IteratorTasks</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

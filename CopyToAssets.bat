@@ -1,1 +1,0 @@
-PowerShell -Command "./CopyToAssets.ps1"

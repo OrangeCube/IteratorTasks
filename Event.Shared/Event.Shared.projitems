@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>2e6a4b9d-f0f1-4c40-8cb5-fc6373a87cd6</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>System</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AsyncHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AsyncHandlerList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EventExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IAsyncEvent.cs" />
+  </ItemGroup>
+</Project>
