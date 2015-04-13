@@ -38,6 +38,24 @@ namespace System.Events
         }
 
         /// <summary>
+        /// 同じ型のイベントを連結する
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
+        public static IEvent<TSource> Concat<TSource>(this IEvent<TSource> first, IEvent<TSource> second)
+        {
+            return Create<TSource>(e =>
+            {
+                var disposables = new CompositeDisposable();
+                disposables.Add(first.Subscribe((sender, arg) => e.Invoke(sender, arg)));
+                disposables.Add(second.Subscribe((sender, arg) => e.Invoke(sender, arg)));
+                return disposables;
+            });
+        }
+
+        /// <summary>
         /// object から具体的な型へのキャスト。
         /// 型が合わないイベントが来た時は例外。
         /// </summary>
