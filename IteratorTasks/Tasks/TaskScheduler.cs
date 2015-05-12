@@ -266,15 +266,9 @@ namespace IteratorTasks
 #if DEBUG
         // スケジューラーを間違って複数のスレッドから呼んでたときの挙動が意味不明すぎてデバッグがつらいので、怪しい動きになってた時に例外出す。
         volatile bool _updating;
-#endif
 
-        /// <summary>
-        /// <see cref="Update"/>が呼ばれた回数。
-        /// </summary>
-        /// <remarks>
-        /// DEBUG 時のみにしたかったけども、#if DEBUG 内に入ってることに気づかないままテストコードで使かわれすぎてしまってて、もうどうしようもなさそう。
-        /// </remarks>
         internal int UpdateCount { get; private set; }
+#endif
 
         /// <summary>
         /// タスクの合間に（コルーチンでないただの）アクションを実行。
