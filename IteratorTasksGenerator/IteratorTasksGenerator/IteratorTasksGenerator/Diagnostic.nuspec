@@ -1,0 +1,24 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>IteratorTasksGenerator</id>
+    <version>1.0.0.0</version>
+    <title>IteratorTasksGenerator</title>
+    <authors>IteratorTasksGenerator</authors>
+    <owners>IteratorTasksGenerator</owners>
+    <licenseUrl>https://github.com/OrangeCube/IteratorTasks/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/OrangeCube/IteratorTasks</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>IteratorTasksGenerator</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright</copyright>
+    <tags>IteratorTasksGenerator, analyzers</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="*.dll" target="tools\analyzers\" exclude="**\Microsoft.CodeAnalysis.*;**\System.Collections.Immutable.*;**\System.Reflection.Metadata.*" />
+    <file src="tools\*.ps1" target="tools\" />
+  </files>
+</package>

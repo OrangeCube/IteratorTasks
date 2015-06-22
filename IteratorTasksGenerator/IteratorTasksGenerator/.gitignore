@@ -5,6 +5,7 @@
 */bin/*
 */obj/*
 */publish/*
+*/*.sln
 */*.dll
 *.sln.ide
 packages/

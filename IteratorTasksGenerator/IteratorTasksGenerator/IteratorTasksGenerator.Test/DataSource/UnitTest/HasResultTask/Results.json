@@ -1,0 +1,9 @@
+﻿[
+  {
+    "id": "IteratorTasksGenerator",
+    "message-args": [ "_task" ],
+    "sevirity": "Warning",
+    "line": 12,
+    "column": 13
+  }
+]

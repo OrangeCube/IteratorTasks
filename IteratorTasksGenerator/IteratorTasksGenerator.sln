@@ -1,0 +1,99 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorTasksGenerator", "IteratorTasksGenerator\IteratorTasksGenerator\IteratorTasksGenerator.csproj", "{B2737774-6C83-458F-863D-E430E5D847C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorTasksGenerator.Test", "IteratorTasksGenerator\IteratorTasksGenerator.Test\IteratorTasksGenerator.Test.csproj", "{86936DD6-5CA6-44CB-8CC6-9CB5FBCA637A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorTasksGenerator.Vsix", "IteratorTasksGenerator\IteratorTasksGenerator.Vsix\IteratorTasksGenerator.Vsix.csproj", "{7D5AF46C-D9A2-4048-8AE8-04F97B93CE1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorTasks", "..\IteratorTasks\IteratorTasks.csproj", "{6C013095-537E-428A-9632-F5B18EE0EDCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorTasks.Extensions", "..\IteratorTasks.Extensions\IteratorTasks.Extensions.csproj", "{9AA09159-8567-4F4B-9871-24B43DECF6AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ref", "Ref", "{7416682A-4AB6-4B8B-B1A1-139DFC2E1C41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Event", "..\Event\Event.csproj", "{8BF51265-C380-44E3-9EDE-4990C8A1ED9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Event.IteratorTasks", "..\Event.IteratorTasks\Event.IteratorTasks.csproj", "{666165CC-E355-4E1E-B9A1-DA61C0D556BC}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\Event.Shared\Event.Shared.projitems*{666165cc-e355-4e1e-b9a1-da61c0d556bc}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		IosDebug|Any CPU = IosDebug|Any CPU
+		IosRelease|Any CPU = IosRelease|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2737774-6C83-458F-863D-E430E5D847C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2737774-6C83-458F-863D-E430E5D847C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2737774-6C83-458F-863D-E430E5D847C7}.IosDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2737774-6C83-458F-863D-E430E5D847C7}.IosDebug|Any CPU.Build.0 = Debug|Any CPU
+		{B2737774-6C83-458F-863D-E430E5D847C7}.IosRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{B2737774-6C83-458F-863D-E430E5D847C7}.IosRelease|Any CPU.Build.0 = Release|Any CPU
+		{B2737774-6C83-458F-863D-E430E5D847C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2737774-6C83-458F-863D-E430E5D847C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86936DD6-5CA6-44CB-8CC6-9CB5FBCA637A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86936DD6-5CA6-44CB-8CC6-9CB5FBCA637A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86936DD6-5CA6-44CB-8CC6-9CB5FBCA637A}.IosDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86936DD6-5CA6-44CB-8CC6-9CB5FBCA637A}.IosDebug|Any CPU.Build.0 = Debug|Any CPU
+		{86936DD6-5CA6-44CB-8CC6-9CB5FBCA637A}.IosRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{86936DD6-5CA6-44CB-8CC6-9CB5FBCA637A}.IosRelease|Any CPU.Build.0 = Release|Any CPU
+		{86936DD6-5CA6-44CB-8CC6-9CB5FBCA637A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86936DD6-5CA6-44CB-8CC6-9CB5FBCA637A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D5AF46C-D9A2-4048-8AE8-04F97B93CE1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D5AF46C-D9A2-4048-8AE8-04F97B93CE1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D5AF46C-D9A2-4048-8AE8-04F97B93CE1D}.IosDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D5AF46C-D9A2-4048-8AE8-04F97B93CE1D}.IosDebug|Any CPU.Build.0 = Debug|Any CPU
+		{7D5AF46C-D9A2-4048-8AE8-04F97B93CE1D}.IosRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{7D5AF46C-D9A2-4048-8AE8-04F97B93CE1D}.IosRelease|Any CPU.Build.0 = Release|Any CPU
+		{7D5AF46C-D9A2-4048-8AE8-04F97B93CE1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D5AF46C-D9A2-4048-8AE8-04F97B93CE1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C013095-537E-428A-9632-F5B18EE0EDCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C013095-537E-428A-9632-F5B18EE0EDCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C013095-537E-428A-9632-F5B18EE0EDCA}.IosDebug|Any CPU.ActiveCfg = IosDebug|Any CPU
+		{6C013095-537E-428A-9632-F5B18EE0EDCA}.IosDebug|Any CPU.Build.0 = IosDebug|Any CPU
+		{6C013095-537E-428A-9632-F5B18EE0EDCA}.IosRelease|Any CPU.ActiveCfg = IosRelease|Any CPU
+		{6C013095-537E-428A-9632-F5B18EE0EDCA}.IosRelease|Any CPU.Build.0 = IosRelease|Any CPU
+		{6C013095-537E-428A-9632-F5B18EE0EDCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C013095-537E-428A-9632-F5B18EE0EDCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AA09159-8567-4F4B-9871-24B43DECF6AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AA09159-8567-4F4B-9871-24B43DECF6AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AA09159-8567-4F4B-9871-24B43DECF6AF}.IosDebug|Any CPU.ActiveCfg = IosDebug|Any CPU
+		{9AA09159-8567-4F4B-9871-24B43DECF6AF}.IosDebug|Any CPU.Build.0 = IosDebug|Any CPU
+		{9AA09159-8567-4F4B-9871-24B43DECF6AF}.IosRelease|Any CPU.ActiveCfg = IosRelease|Any CPU
+		{9AA09159-8567-4F4B-9871-24B43DECF6AF}.IosRelease|Any CPU.Build.0 = IosRelease|Any CPU
+		{9AA09159-8567-4F4B-9871-24B43DECF6AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AA09159-8567-4F4B-9871-24B43DECF6AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BF51265-C380-44E3-9EDE-4990C8A1ED9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BF51265-C380-44E3-9EDE-4990C8A1ED9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BF51265-C380-44E3-9EDE-4990C8A1ED9D}.IosDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BF51265-C380-44E3-9EDE-4990C8A1ED9D}.IosDebug|Any CPU.Build.0 = Debug|Any CPU
+		{8BF51265-C380-44E3-9EDE-4990C8A1ED9D}.IosRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{8BF51265-C380-44E3-9EDE-4990C8A1ED9D}.IosRelease|Any CPU.Build.0 = Release|Any CPU
+		{8BF51265-C380-44E3-9EDE-4990C8A1ED9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BF51265-C380-44E3-9EDE-4990C8A1ED9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{666165CC-E355-4E1E-B9A1-DA61C0D556BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{666165CC-E355-4E1E-B9A1-DA61C0D556BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{666165CC-E355-4E1E-B9A1-DA61C0D556BC}.IosDebug|Any CPU.ActiveCfg = IosDebug|Any CPU
+		{666165CC-E355-4E1E-B9A1-DA61C0D556BC}.IosDebug|Any CPU.Build.0 = IosDebug|Any CPU
+		{666165CC-E355-4E1E-B9A1-DA61C0D556BC}.IosRelease|Any CPU.ActiveCfg = IosRelease|Any CPU
+		{666165CC-E355-4E1E-B9A1-DA61C0D556BC}.IosRelease|Any CPU.Build.0 = IosRelease|Any CPU
+		{666165CC-E355-4E1E-B9A1-DA61C0D556BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{666165CC-E355-4E1E-B9A1-DA61C0D556BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6C013095-537E-428A-9632-F5B18EE0EDCA} = {7416682A-4AB6-4B8B-B1A1-139DFC2E1C41}
+		{9AA09159-8567-4F4B-9871-24B43DECF6AF} = {7416682A-4AB6-4B8B-B1A1-139DFC2E1C41}
+		{8BF51265-C380-44E3-9EDE-4990C8A1ED9D} = {7416682A-4AB6-4B8B-B1A1-139DFC2E1C41}
+		{666165CC-E355-4E1E-B9A1-DA61C0D556BC} = {7416682A-4AB6-4B8B-B1A1-139DFC2E1C41}
+	EndGlobalSection
+EndGlobal
